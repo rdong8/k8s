@@ -1,0 +1,23 @@
+name := "monero-node"
+namespace := "monero"
+chart := "oci://tccr.io/truecharts/monero-node"
+values := name / "values.yaml"
+
+install:
+    helm \
+        upgrade \
+        {{ name }} \
+        {{ chart }} \
+        --install \
+        -n {{ namespace }} \
+        --create-namespace \
+        -f {{ values }}
+
+uninstall:
+    helm \
+        uninstall \
+        {{ name }} \
+        -n {{ namespace }}
+
+monero command:
+    just name="monero-node" namespace="monero" chart="oci://tccr.io/truecharts/monero-node" {{ command }}

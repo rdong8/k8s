@@ -1,0 +1,24 @@
+server := "oracletest"
+inventory := "../k8s/inventory.yml"
+
+install-ansible:
+    python3 -m pip install ansible
+
+upgrade-ansible:
+    python3 -m pip install --upgrade ansible
+
+pull:
+    git pull
+
+provision:
+    ansible-playbook -kK playbooks/site.yml -i {{ inventory }}
+
+upgrade:
+    ansible-playbook -kK playbooks/upgrade.yml -i {{ inventory }}
+
+uninstall:
+    ansible-playbook -kK playbooks/reset.yml -i {{ inventory }}
+
+kubeconfig:
+    stat ~/.kube/config.new
+    mv ~/.kube/config.new ~/.kube/config

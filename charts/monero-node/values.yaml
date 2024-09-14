@@ -1,0 +1,18 @@
+image:
+  tag: "v0.18.3.4@sha256:c4261464df5510f6a8bbef8ce5f580ba53428e3716049900478688d5db94b4a1"
+
+service:
+  main:
+    type: "NodePort"
+    ports:
+      main:
+        nodePort: "30080"
+  rpc:
+    type: "NodePort"
+    ports:
+      rpc:
+        nodePort: "30089"
+
+podOptions:
+  nodeSelector:
+    kubernetes.io/arch: "arm64"
